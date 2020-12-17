@@ -1,20 +1,25 @@
 {
-  "name": "node-fle-demo",
+  "name": "csfle",
   "version": "1.0.0",
-  "description": "",
-  "main": "app.js",
+  "description": "A sample implementation of field level encryption in MongoDB, meant to accompany the CSFLE guide at https://developer.mongodb.com",
+  "main": "clients.js",
   "scripts": {
+    "start": "node client.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/JoeKarlsson/node-fle-demo.git"
+    "url": "git+https://github.com/mongodb-university/csfle-guides.git"
   },
-  "keywords": [],
-  "author": "Joe <joekarlsson1@gmail.com>",
-  "license": "ISC",
+  "author": "Joe Karlsson",
+  "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/JoeKarlsson/node-fle-demo/issues"
+    "url": "https://github.com/mongodb-university/csfle-guides/issues"
   },
-  "homepage": "https://github.com/JoeKarlsson/node-fle-demo#readme"
+  "homepage": "https://github.com/mongodb-university/csfle-guides#readme",
+  "dependencies": {
+    "mongodb": "^3.4.0",
+    "mongodb-client-encryption": "^1.0.0",
+    "node-gyp": "^7.1.2"
+  }
 }
