@@ -110,8 +110,13 @@ module.exports = {
         useUnifiedTopology: true,
         monitorCommands: true,
         autoEncryption: {
+          // The key vault collection contains the data key that the client uses to encrypt and decrypt fields.
           keyVaultNamespace: this.keyVaultNamespace,
+          // The client expects a key management system to store and provide the application's master encryption key.
+          // For now, we will use a local master key, so they use the local KMS provider.
           kmsProviders: this.kmsProviders,
+          // The JSON Schema that we have defined doesn't explicitly specify the collection to which it applies.
+          // To assign the schema, they map it to the medicalRecords.patients collection namespace
           schemaMap
         }
       })
@@ -127,6 +132,9 @@ module.exports = {
       return {
         "medicalRecords.patients": {
           bsonType: "object",
+          // specify the encryptMetadata key at the root level of the JSON Schema.
+          // As a result, all encrypted fields defined in the properties field of the
+          // schema will inherit this encryption key unless specifically overwritten.
           encryptMetadata: {
             keyId: [new Binary(Buffer.from(dataKey, "base64"), 4)]
           },
@@ -134,6 +142,9 @@ module.exports = {
             insurance: {
               bsonType: "object",
               properties: {
+                // The insurance.policyNumber field is embedded inside the insurance
+                // field and represents the patient's policy number.
+                // This policy number is a distinct and sensitive field. 
                 policyNumber: {
                   encrypt: {
                     bsonType: "int",
@@ -142,18 +153,27 @@ module.exports = {
                 }
               }
             },
+            // The medicalRecords field is an array that contains a set of medical record documents. 
+            // Each medical record document represents a separate visit and specifies information
+            // about the patient at that that time, such as their blood pressure, weight, and heart rate.
+            // This field is sensitive and should be encrypted.
             medicalRecords: {
               encrypt: {
                 bsonType: "array",
                 algorithm: "AEAD_AES_256_CBC_HMAC_SHA_512-Random"
               }
             },
+            // The bloodType field represents the patient's blood type.
+            // This field is sensitive and should be encrypted. 
             bloodType: {
               encrypt: {
                 bsonType: "string",
                 algorithm: "AEAD_AES_256_CBC_HMAC_SHA_512-Random"
               }
             },
+            // The ssn field represents the patient's 
+            // social security number. This field is 
+            // sensitive and should be encrypted.
             ssn: {
               encrypt: {
                 bsonType: "int",

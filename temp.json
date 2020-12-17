@@ -1,0 +1,16 @@
+{
+  "_id": "5d6ecdce70401f03b27448fc",
+  "name": "Jon Doe",
+  "ssn": 241014209,
+  "bloodType": "AB+",
+  "medicalRecords": [
+    {
+      "weight": 180,
+      "bloodPressure": "120/80"
+    }
+  ],
+  "insurance": {
+    "provider": "MaestCare",
+    "policyNumber": 123142
+  }
+}

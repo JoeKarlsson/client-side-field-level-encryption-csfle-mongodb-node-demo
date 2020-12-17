@@ -4,6 +4,7 @@ const { connectionString, dataKey } = require("./config");
 const localMasterKey = readMasterKey()
 
 const csfleHelper = new CsfleHelper({
+  // The client expects a key management system to store and provide the application's master encryption key. For now, we will use a local master key, so they use the local KMS provider.
   kmsProviders: {
     local: {
       key: localMasterKey

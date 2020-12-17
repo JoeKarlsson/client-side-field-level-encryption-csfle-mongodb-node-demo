@@ -1,3 +1,5 @@
+// make-data-key.js
+
 const { readMasterKey, CsfleHelper } = require("./helpers");
 const { connectionString } = require("./config");
 
@@ -10,7 +12,7 @@ async function main() {
         key: localMasterKey
       }
     },
-    connectionString,
+    connectionString: "PASTE YOUR MONGODB ATLAS URI HERE"
   })
 
   const client = await csfleHelper.getRegularClient()
