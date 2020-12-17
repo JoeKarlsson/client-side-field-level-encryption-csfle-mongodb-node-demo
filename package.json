@@ -4,7 +4,7 @@
   "description": "A sample implementation of field level encryption in MongoDB, meant to accompany the CSFLE guide at https://developer.mongodb.com",
   "main": "clients.js",
   "scripts": {
-    "start": "node client.js",
+    "start": "node clients.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -14,12 +14,12 @@
   "author": "Joe Karlsson",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/mongodb-university/csfle-guides/issues"
+    "url": "https://github.com/JoeKarlsson/client-side-field-level-encryption-csfle-mongodb-node-demo/issues"
   },
-  "homepage": "https://github.com/mongodb-university/csfle-guides#readme",
+  "homepage": "https://github.com/JoeKarlsson/client-side-field-level-encryption-csfle-mongodb-node-demo",
   "dependencies": {
-    "mongodb": "^3.4.0",
-    "mongodb-client-encryption": "^1.0.0",
+    "mongodb": "^3.6.3",
+    "mongodb-client-encryption": "^1.1.0",
     "node-gyp": "^7.1.2"
   }
 }

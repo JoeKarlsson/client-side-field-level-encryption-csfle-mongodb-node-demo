@@ -1,4 +1,5 @@
-const { readMasterKey, CsfleHelper } = require("./helpers")
+const { readMasterKey, CsfleHelper } = require("./helpers");
+const { connectionString, dataKey } = require("./config");
 
 const localMasterKey = readMasterKey()
 
@@ -8,13 +9,10 @@ const csfleHelper = new CsfleHelper({
       key: localMasterKey
     }
   },
-  connectionString: "mongodb+srv://joe:karlsson@cluster0.m7f10.mongodb.net/medicalRecords?retryWrites=true&w=majority"
+  // connectionString,
 })
 
 async function main() {
-  // change this to the base64 encoded data key generated from make-data-key.js
-  let dataKey = "HZrq+a+TSBeZ0txrrnhaqw==";
-
   let regularClient = await csfleHelper.getRegularClient()
   let schemeMap = csfleHelper.createJsonSchemaMap(dataKey)
   let csfleClient = await csfleHelper.getCsfleEnabledClient(schemeMap)
