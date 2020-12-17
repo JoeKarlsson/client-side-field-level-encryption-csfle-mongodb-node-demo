@@ -1,6 +1,7 @@
 # project
 src/config.json
 ./config.js
+config.js
 .env
 
 # Logs
