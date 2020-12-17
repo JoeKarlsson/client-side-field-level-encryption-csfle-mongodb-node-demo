@@ -1,4 +1,5 @@
-const { readMasterKey, CsfleHelper } = require("./helpers")
+const { readMasterKey, CsfleHelper } = require("./helpers");
+const { connectionString } = require("./config");
 
 async function main() {
   const localMasterKey = readMasterKey()
@@ -8,7 +9,8 @@ async function main() {
       local: {
         key: localMasterKey
       }
-    }
+    },
+    connectionString,
   })
 
   const client = await csfleHelper.getRegularClient()

@@ -9,7 +9,7 @@ const csfleHelper = new CsfleHelper({
       key: localMasterKey
     }
   },
-  // connectionString,
+  connectionString,
 })
 
 async function main() {
