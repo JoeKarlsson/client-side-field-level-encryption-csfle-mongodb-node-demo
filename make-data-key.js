@@ -12,7 +12,7 @@ async function main() {
         key: localMasterKey
       }
     },
-    connectionString: "PASTE YOUR MONGODB ATLAS URI HERE"
+    connectionString
   })
 
   const client = await csfleHelper.getRegularClient()

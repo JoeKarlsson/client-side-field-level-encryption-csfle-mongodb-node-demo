@@ -1,7 +1,6 @@
 const fs = require("fs")
 const mongodb = require("mongodb")
-const { ClientEncryption } = require("mongodb-client-encryption")
-const { MongoClient, Binary } = mongodb
+const { MongoClient, Binary, ClientEncryption } = mongodb
 
 module.exports = {
   readMasterKey: function (path = "./master-key.txt") {
@@ -92,10 +91,7 @@ module.exports = {
     }
 
     async getRegularClient() {
-      const client = new MongoClient(this.connectionString, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-      })
+      const client = new MongoClient(this.connectionString)
       return await client.connect()
     }
 
@@ -106,8 +102,6 @@ module.exports = {
         )
       }
       const client = new MongoClient(this.connectionString, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
         monitorCommands: true,
         autoEncryption: {
           // The key vault collection contains the data key that the client uses to encrypt and decrypt fields.

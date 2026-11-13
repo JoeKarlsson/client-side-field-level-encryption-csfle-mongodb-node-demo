@@ -12,27 +12,29 @@ Once you complete the steps in this guide, you should have:
 
 ### Requirements
 
-* MongoDB Atlas 4.2+
-* MongoDB Node driver 3.6.2+
-* The libmongocrypt library installed
-* The mongocryptd binary installed
+* Node.js 20.19+
+* MongoDB Atlas 4.2+, or a local MongoDB Enterprise 4.2+
+* The mongocryptd binary on your `PATH` (it ships with MongoDB Enterprise).
+  libmongocrypt comes bundled with the `mongodb-client-encryption` npm package.
 
-1. Clone this repository and navigate to the **nodejs** directory.
+1. Clone this repository.
 
    ```sh
-   git clone https://github.com/mongodb-university/csfle-guides.git
-   cd nodejs
+   git clone https://github.com/JoeKarlsson/client-side-field-level-encryption-csfle-mongodb-node-demo.git
+   cd client-side-field-level-encryption-csfle-mongodb-node-demo
    ```
 
-   Work from the **nodejs** directory for the remainder of these instructions.
+2. Start a locally running `mongod` instance (Enterprise version >= 4.2) running on port 27017,
+   or use an Atlas cluster.
 
-2. Start a locally running `mongod` instance (Enterprise version >= 4.2) running on port 27017
+3. Install the dependencies in `package.json`, and copy the example config
 
-3. Install the dependencies in `package.json`
-
-   ```js
+   ```sh
    npm install
+   cp config_example.js config.js
    ```
+
+   Put your connection string in `connectionString` in `config.js`.
 
 4. Make sure you have the `master-key.txt` file in the root of your execution
    environment. This is a 96-byte cryptographically-secure generated master
@@ -48,11 +50,7 @@ Once you complete the steps in this guide, you should have:
    ```
 
    This outputs a base64 encoded string of the UUID of your newly created data key. Paste
-   this into `clients.js` where you see this line
-
-   ```js
-   let dataKey = null // change this!
-   ```
+   this into `dataKey` in `config.js`.
 
 6. Run the `clients.js` script to insert a document with the CSFLE-enabled client
    and then read that document with it as well as a regular client. You

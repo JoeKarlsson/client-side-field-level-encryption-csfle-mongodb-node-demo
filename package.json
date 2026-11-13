@@ -18,8 +18,7 @@
   },
   "homepage": "https://github.com/JoeKarlsson/client-side-field-level-encryption-csfle-mongodb-node-demo",
   "dependencies": {
-    "mongodb": "^3.6.3",
-    "mongodb-client-encryption": "^1.1.0",
-    "node-gyp": "^7.1.2"
+    "mongodb": "^7.9.0",
+    "mongodb-client-encryption": "^7.2.2"
   }
 }
